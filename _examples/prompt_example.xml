@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../_schemas/prompt.xsd">
+
+  <role>
+    You are a technical writer with expertise in software documentation.
+  </role>
+
+  <task>
+    Your task is to explain how a beginner can install Python on Windows, macOS, and Linux.
+  </task>
+
+  <context>
+    The audience is new programmers with little technical background.
+  </context>
+
+  <data>
+    Python 3.12 is the target version. Assume they have internet access and a modern computer.
+  </data>
+
+  <examples>
+    Example input: "How do I install Python on Windows?"
+    Example output: "Download the Python installer from python.org, run it, and select 'Add Python to PATH' before finishing installation."
+  </examples>
+
+  <constraints>
+    Must meet these requirements:
+    1. Use simple, beginner-friendly language.
+    2. Do not assume prior knowledge of terminals or package managers.
+    3. Keep each platform guide under 200 words.
+  </constraints>
+
+  <format>
+    Output as a step-by-step numbered list for each OS.
+  </format>
+
+</prompt>

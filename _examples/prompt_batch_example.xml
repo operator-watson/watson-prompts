@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="../_schemas/prompt_batch.xsd">
+
+  <prompt>
+    <role>
+      You are a marketing copywriter with expertise in social media.
+    </role>
+    <task>
+      Your task is to write three short promotional tweets for a new productivity app.
+    </task>
+    <context>
+      The app helps users manage tasks, track time, and set reminders.
+    </context>
+    <data>
+      Brand voice is friendly, modern, and encouraging. Audience: professionals and students.
+    </data>
+    <examples>
+      Example input: "Write a tweet about a new to-do list app."
+      Example output: "Tame your chaos. Stay on track. Meet your new productivity buddy — TaskFlow 🚀"
+    </examples>
+    <constraints>
+      1. Each tweet must be under 280 characters.
+      2. Include one relevant emoji per tweet.
+      3. Avoid technical jargon.
+    </constraints>
+    <format>
+      Output as a numbered list of tweets.
+    </format>
+  </prompt>
+
+  <prompt>
+    <role>
+      You are a customer support assistant.
+    </role>
+    <task>
+      Your task is to draft a polite email explaining a shipping delay.
+    </task>
+    <context>
+      The customer ordered a laptop that is delayed by one week.
+    </context>
+    <data>
+      Company name: TechWorld. Customer: Alex Johnson.
+    </data>
+    <constraints>
+      1. Keep the email under 200 words.
+      2. Use a professional but empathetic tone.
+      3. Offer a small discount code for future purchases.
+    </constraints>
+    <format>
+      Output in plain text email format.
+    </format>
+  </prompt>
+
+</prompts>
