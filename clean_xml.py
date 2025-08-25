@@ -5,49 +5,49 @@ from pathlib import Path
 
 def clean_prompt(xml_text: str) -> str:
     """
-    Cleans up an XML prompt string for LLM use:
+    Cleans XML:
     - Removes XML declaration
     - Removes namespace/schema attributes from <prompt>
-    - Strips CDATA markers and surrounding whitespace/newlines
+    - Strips CDATA while preserving internal indentation
+    - Avoids extra spaces on closing tags
     """
-    # Remove XML declaration
     xml_text = re.sub(r'<\?xml.*?\?>', '', xml_text, flags=re.DOTALL)
-
-    # Normalize <prompt ...> to just <prompt>
     xml_text = re.sub(r'<prompt[^>]*>', '<prompt>', xml_text)
-
-    # Remove CDATA start/end markers along with surrounding whitespace/newlines
-    xml_text = re.sub(r'\s*<!\[CDATA\[', '', xml_text)
-    xml_text = re.sub(r'\]\]>\s*', '', xml_text)
-
-    # Trim any leading/trailing whitespace
+    xml_text = re.sub(
+        r'<!\[CDATA\[\s*(.*?)\s*\]\]>',
+        lambda m: m.group(1),
+        xml_text,
+        flags=re.DOTALL
+    )
     return xml_text.strip()
+
+def process_file(file_path: Path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        raw_xml = f.read()
+    cleaned_xml = clean_prompt(raw_xml)
+    output_path = file_path.with_name(file_path.stem + "_parsed.xml")
+    with open(output_path, 'w', encoding='utf-8') as f:
+        f.write(cleaned_xml)
+    print(f"Cleaned XML saved to: {output_path}")
 
 def main():
     if len(sys.argv) != 2:
-        print(f"Usage: {sys.argv[0]} <input_file.xml>")
+        print(f"Usage: {sys.argv[0]} <file_or_folder>")
         sys.exit(1)
 
-    input_path = Path(sys.argv[1])
-    if not input_path.is_file():
-        print(f"Error: {input_path} does not exist.")
+    path = Path(sys.argv[1])
+    if path.is_file():
+        process_file(path)
+    elif path.is_dir():
+        xml_files = list(path.rglob("*.xml"))
+        if not xml_files:
+            print("No XML files found in the folder.")
+            sys.exit(1)
+        for xml_file in xml_files:
+            process_file(xml_file)
+    else:
+        print(f"Error: {path} does not exist.")
         sys.exit(1)
-
-    # Read the XML file
-    with open(input_path, 'r', encoding='utf-8') as f:
-        raw_xml = f.read()
-
-    # Clean it
-    cleaned_xml = clean_prompt(raw_xml)
-
-    # Output path
-    output_path = input_path.with_name(input_path.stem + "_parsed.xml")
-
-    # Write cleaned XML
-    with open(output_path, 'w', encoding='utf-8') as f:
-        f.write(cleaned_xml)
-
-    print(f"Cleaned XML saved to: {output_path}")
 
 if __name__ == "__main__":
     main()
