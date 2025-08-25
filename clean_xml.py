@@ -8,7 +8,7 @@ def clean_prompt(xml_text: str) -> str:
     Cleans up an XML prompt string for LLM use:
     - Removes XML declaration
     - Removes namespace/schema attributes from <prompt>
-    - Strips CDATA markers
+    - Strips CDATA markers and surrounding whitespace/newlines
     """
     # Remove XML declaration
     xml_text = re.sub(r'<\?xml.*?\?>', '', xml_text, flags=re.DOTALL)
@@ -16,10 +16,11 @@ def clean_prompt(xml_text: str) -> str:
     # Normalize <prompt ...> to just <prompt>
     xml_text = re.sub(r'<prompt[^>]*>', '<prompt>', xml_text)
 
-    # Remove CDATA start/end markers
-    xml_text = xml_text.replace('<![CDATA[', '').replace(']]>', '')
+    # Remove CDATA start/end markers along with surrounding whitespace/newlines
+    xml_text = re.sub(r'\s*<!\[CDATA\[', '', xml_text)
+    xml_text = re.sub(r'\]\]>\s*', '', xml_text)
 
-    # Trim excess whitespace
+    # Trim any leading/trailing whitespace
     return xml_text.strip()
 
 def main():
