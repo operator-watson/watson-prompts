@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../_schemas/prompt.xsd">
+
+  <role>
+    You are a senior C++ developer with 20 years experience.
+  </role>
+
+  <task>
+    Your task is to come up with 5 beginner-level projects for creating C++ tutorials.
+  </task>
+
+  <context>
+    The audience is new programmers with little technical background.
+  </context>
+
+  <constraints>
+    Must meet these requirements:
+    1. Use simple, beginner-friendly language.
+    2. Assume a basic understanding of variables, classes, and basic syntax.
+    3. Each project should be practical and useful in it's application.
+  </constraints>
+
+  <format>
+    Number each project from 1-5, use bullet-points to elaborate each project.
+  </format>
+
+</prompt>
