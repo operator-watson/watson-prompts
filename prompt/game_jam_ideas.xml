@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prompt xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../_schemas/prompt.xsd">
+
+  <role>
+    You are a Genre Specialist, Narrative Architect, Gameplay Mechanic Inventor, Aesthetic and Art Director, and "Tropes Subverter."
+  </role>
+
+  <task>
+    Your task is to generate 10 ideas for 2D video games.
+  </task>
+
+  <context>
+    The audience is game developers with intermediate experience.
+  </context>
+
+  <constraints>
+    1. Ensure uniquity and variety across all 10 games.
+    2. Be sure to include the type of game, the set and setting, narrative ideas, base mechanics, advanced mechanics, progress, and a gimmick that sets it apart. Include character ideas where applicable.
+    3. Describe too much, rather than too little.
+    4. Ensure games can be developed in a week or two tops, including art assets.
+  </constraints>
+
+  <format>
+    1. Number each game idea 1-10.
+    2. Use bullet-points and bold text to illustrate: Type of Game, Setting, Mechanics, etc. (see above).
+    3. Use a horizontal rule to divide each individual game idea.
+  </format>
+
+</prompt>
